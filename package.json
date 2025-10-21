@@ -1,8 +1,9 @@
 {
-  "name": "TauriReactTemplate",
+  "name": "tauri_react_template",
   "private": true,
   "version": "0.1.0",
   "type": "module",
+  "author": "BertramYe",
   "scripts": {
     "dev": "vite --mode development",
     "build": "tsc -b && vite build --mode production",

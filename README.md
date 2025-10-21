@@ -84,3 +84,9 @@ and then download the pacakge according to the commend alert and place it in the
 
 and for the left download issue and resolution:
 https://github.com/tauri-apps/tauri/issues/7338
+
+
+## envriment files
+
+`.env.development`  ---> for the development enviroment when run the commend : `npm run tauri dev`
+`.env.production`  ---> for the production enviroment when run the commend : `npm run package`
