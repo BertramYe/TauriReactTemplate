@@ -1,6 +1,6 @@
 # Tauri + React + Typescript
 
-just customised an template, and help you get started developing with Tauri, React and Typescript in Vite.
+just customised an `Tauri + React + Typescript` template, and help you get started developing with `Tauri v2`, `React v19` and `Typescript` in `Vite 7` and `rollup` enable.
 
 ## Recommended IDE Setup
 
