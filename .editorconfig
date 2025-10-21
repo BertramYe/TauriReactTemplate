@@ -1,0 +1,30 @@
+# EditorConfig is awesome: https://editorconfig.org
+
+# Root property to specify this is the root configuration file
+root = true
+
+# Global settings for all files
+[*]
+indent_style = space        # Use spaces for indentation
+indent_size = 2             # Indent with 2 spaces
+end_of_line = lf            # Use Unix-style line endings (LF)
+charset = utf-8             # Set character encoding to UTF-8
+trim_trailing_whitespace = true  # Trim trailing whitespaces
+insert_final_newline = true # Ensure a newline at the end of the file
+
+# Settings for JavaScript and JSX files
+[*.{js,jsx}]
+max_line_length = 80       # Maximum line length is 80 characters
+
+# Settings for TypeScript and TSX files
+[*.{ts,tsx}]
+indent_size = 4            # Indent with 4 spaces for TypeScript files
+
+# Settings for JSON files
+[*.json]
+indent_style = space
+indent_size = 2
+
+# Settings for Markdown files
+[*.md]
+trim_trailing_whitespace = false

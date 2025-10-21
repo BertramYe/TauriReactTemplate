@@ -1,0 +1,21 @@
+
+//  下面这些自定义字体都可以从 https://fonts.google.com/ 开源项目中下载和使用到
+
+// @font-face {
+//   font-family: "pageFont";
+//   src: url("../asset/font/Roboto/static/Roboto-Regular.woff2") format("woff2"),
+//        url("../asset/font/Roboto/static/Roboto-Regular.woff") format("woff"),
+//        url("../asset/font/Roboto/static/Roboto-Regular.ttf") format("truetype"),
+// }
+
+@font-face {
+  font-family: "Roboto";
+  src: 
+      url("../assets/font/Roboto/Roboto-VariableFont_wdth,wght.ttf") format("truetype-variations"),
+      url("../assets/font/Roboto/Roboto-Italic-VariableFont_wdth,wght.ttf") format("truetype-variations");
+  font-weight: 100 900; /* 你可以在 100 到 900 之间选择粗细 */
+  font-stretch: 75% 125%; /* 设置宽度范围，100% 为正常宽度 */
+  font-display: swap; /* 启用字体交换策略，加载完字体后再替换 */
+}
+
+
