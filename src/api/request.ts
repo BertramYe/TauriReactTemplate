@@ -1,9 +1,5 @@
-import axios from 'axios'
-
-type TResponse = {
-  data: any
-  msg: string
-}
+import axios from 'axios';
+import type { AxiosResponse } from 'axios';
 
 const instance = axios.create({
   baseURL: `${import.meta.env.VITE_API_HOST}/api/`,
@@ -20,12 +16,10 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
   response => {
-    const data = response.data || {}
-
+    const data = response.data ?? {}
     if (response.status !== 200) {
       return Promise.reject(new Error(data.msg ?? 'there were error for the server, have a try later please'))
     }
-
     return data
   },
   error => {
@@ -36,10 +30,10 @@ instance.interceptors.response.use(
 
 
 const Requester = {
-  get(url: string, param?: any): Promise<TResponse> {
+  get(url: string, param?: any): Promise<AxiosResponse<any, any, TObject>> {
     return instance.get(url, { params: param })
   },
-  post(url: string, data?: any): Promise<TResponse> {
+  post(url: string, data?: any): Promise<AxiosResponse<any, any, TObject>> {
     return instance.post(url, data)
   }
 }
