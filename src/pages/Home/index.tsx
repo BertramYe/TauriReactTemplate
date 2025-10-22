@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import useMessager from "@/src/hooks/useMessager";
+import { useMessager } from "@/src/hooks";
 import Styles from './index.module.scss'
 // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
 import { invoke } from "@tauri-apps/api/core";
