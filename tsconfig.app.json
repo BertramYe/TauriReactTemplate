@@ -19,7 +19,7 @@
     "moduleDetection": "force",
     "noEmit": true,
     "jsx": "react-jsx",
-    "allowSyntheticDefaultImports": true, // disAllow 'import x from y' when a module doesn't have a default export.
+    "allowSyntheticDefaultImports": true, // Allow 'import x from y' when a module doesn't have a default export.
 
     /* Linting */
     "strict": true,
