@@ -1,4 +1,4 @@
 # .cargo/config.toml
 
 [build]
-rustflags = ["-C", "link-arg=/STACK:10485760"]  # 调整和添加编译内存
+rustflags = ["-C", "link-arg=/STACK:10485760"]  # adjust and add the compile memory as 10Mb  

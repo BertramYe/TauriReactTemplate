@@ -11,7 +11,6 @@ const HomePage = () => {
     const [message,setGreetMsg] = useState<TResponse<string>>()
     const [name,setName] = useState<string | undefined>()
     useMessager(message)
-
     return (
         <div className={Styles.container}>
             <h1>TauriReactTemplate</h1>
