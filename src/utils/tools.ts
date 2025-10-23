@@ -23,7 +23,7 @@ export const removeEmptyObjectElement = (obj: TObject) => {
 
 
 export const  classNames = (...classNameList:( CSSModuleClasses | string | undefined)[]) => {
-    // filter(Boolean) 用来从数组中移除所有 "假值"（falsy values），包括 undefined、null、false、0、NaN 和空字符串 ""。
+    // filter(Boolean) remove all fake value from the array（falsy values）, includig undefined、null、false、0、NaN and empty string ""。
     const prefilterClassName = classNameList.filter(Boolean).join(" ")
     // const combined_classname = classNameList.filter(Boolean).reverse().join(" ");
     return ` ${prefilterClassName} `;
