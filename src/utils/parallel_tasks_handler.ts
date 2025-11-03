@@ -1,7 +1,3 @@
-
-
-
-
 // type TaskFn<R> = () => Promise<R>;
 // type Task<R> = { fn: TaskFn<R>; priority: number };
 // /**
@@ -82,53 +78,52 @@
 
 
 /**
- * 并发池工具
- * @param poolLimit 最大并发数
- * @param array 任务数组
- * @param iteratorFn 任务函数，参数为每个任务的值，为了整个请求的稳定性，一定要 将 try ... catch ... 放进 iteratorFn 函数里面
- * @returns 所有任务的结果
+ * Parallel task handle tools
+ * @param poolLimit max Parallel task numbers
+ * @param taskParamsList task prams array
+ * @param iteratorFn  task function, to make sure all will be executed, must use `try ... catch ...` to wrap its' inner code block logical
+ * @returns all tasks execued results
  */
-export async function asyncPool<T, R>(
+export async function ParallelTasksPool<T, R>(
   poolLimit: number,
-  array: T[],
+  taskParamsList: T[],
   iteratorFn: (item: T, index: number, array: T[]) => Promise<R>
 )
 // : Promise<PromiseSettledResult<Awaited<R>>[]> 
 // : Promise<Awaited<R>[]>
 
 {
-  // 收集所有任务结果的 promise  
+  // collect all of the results promise  
   const result: R[] = [];
-  // 当前正在执行的任务 Promise（资源池）。
+  // on going tasks Promise pool.
   const pool: Promise<any>[] = [];
-  for (let i = 0; i < array.length; i++) {
-    // 对每个任务都生成一个 Promise，并加入 result。
-    // 下面没加 reject 逻辑是因为，我们需要将 try ... catch ... 放进 iteratorFn 函数逻辑， 来保证 iteratorFn 的执行是顺利的
-    const task = Promise.resolve().then(() => iteratorFn(array[i], i, array));
+  for (let i = 0; i < taskParamsList.length; i++) {
+    // wrap each task with the promise, but as there were below didn't add the reject logical,
+    // so when use current functions  need put `try ... catch ...` into iteratorFn functions to make sure there were only resolve was triggered
+    const task = Promise.resolve().then(() => iteratorFn(taskParamsList[i], i, taskParamsList));
     result.push(task as unknown as R);
 
-    // 当任务量超过资源池限制
-    if (array.length > poolLimit) {
+    // when to handle tasks number is over the pool limitations
+    if (taskParamsList.length > poolLimit) {
        const task_wrapper: Promise<any> = task.then(() =>{
-          // 返回的是 pool 被剔除的 promise 的新的 promise 结果    
+          //  splice will return the new promised result that has been removed from the pool   
           const new_pool =  pool.splice(pool.indexOf(task_wrapper), 1)
           return new_pool
        });
 
-       // 注意这里的 pool 里面装的是 task 被包裹一层新的 promise 的  新的 promise 对象 task_wrapper   
+       // task_wrapper is the new task  that wrappered by the promise logical  
        pool.push(task_wrapper);
        
-        // 任务池满就阻塞
-        if (pool.length >= poolLimit) {
-            await Promise.race(pool);
-        }
+      // when the pool is full, use the race to stop the push action above
+      if (pool.length >= poolLimit) {
+          await Promise.race(pool);
+      }
     }
   }
 
-
-    // 如果没超过，其中 result 正好是需要执行的 promise 的队列，直接利用  Promise.all 拿到其结果就行   
-    const promise_all =  Promise.all(result);  // 一个失败，整个停止
-    // const promise_all =  Promise.allSettled(result); // 一个失败不停止，直到整个全部执行完
+    // use Promise.all or the  allSettled to get all executed resulted of the iteratorFn
+    const promise_all =  Promise.all(result);  // one iteratorFn failed, all tasks will stopped
+    // const promise_all =  Promise.allSettled(result); // one iteratorFn failed, not stop but till all of the task  iteratorFn has been executed
     return promise_all
 }
 

@@ -1,7 +1,7 @@
 import { API_LIST } from './urls';
 import Requester from './request';
 import { UserProfileSchema} from './schemas';
-import { asyncPool as _ } from '@/src/utils/parall_tasks_handler';
+import { ParallelTasksPool as _ } from '@/src/utils/parallel_tasks_handler';
 import {type TState} from '@/src/hooks'
 
 // requst Demo
