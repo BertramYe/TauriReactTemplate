@@ -1,0 +1,18 @@
+table {
+    /* 去除双线边框，变成单线 */
+    border-collapse: collapse;
+
+    th,
+    td {
+        border: 1px solid #727272;
+        /* 让每个单元格有边框 */
+        padding: 8px;
+        text-align: center;
+        white-space: nowrap;
+        padding: .2rem;
+    };
+
+    td {
+        font-size: 80%;
+    }
+}

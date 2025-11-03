@@ -1,5 +1,7 @@
 import axios from 'axios';
-import type { AxiosResponse } from 'axios';
+import { RequestWrapper,type TSchema } from './pre_request';
+import Token from './tokener';
+
 
 const instance = axios.create({
   baseURL: `${import.meta.env.VITE_API_HOST}/api/`,
@@ -7,7 +9,11 @@ const instance = axios.create({
 })
 
 instance.interceptors.request.use(
-  config => config,
+  (config) => {
+    config.headers['Content-Type'] = "application/json"
+    config.headers['Authorization'] = `Bearer ${Token.get().api_token}`
+    return config
+  },
   error => {
     console.error('request error:', error)
     return Promise.reject(error)
@@ -17,8 +23,11 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   response => {
     const data = response.data ?? {}
+    const message = data.msg ?? data.message ?? response.statusText 
     if (response.status !== 200) {
-      return Promise.reject(new Error(data.msg ?? 'there were error for the server, have a try later please'))
+      return Promise.reject(new Error(message ?? 'there were error for the server, have a try later please'))
+    }else {
+      data.message = message
     }
     return data
   },
@@ -29,13 +38,18 @@ instance.interceptors.response.use(
 )
 
 
-const Requester = {
-  get(url: string, param?: any): Promise<AxiosResponse<any, any, TObject>> {
-    return instance.get(url, { params: param })
-  },
-  post(url: string, data?: any): Promise<AxiosResponse<any, any, TObject>> {
-    return instance.post(url, data)
-  }
+interface IRequest {
+  (url: string, param?: TObject | FormData, withToken?: boolean, parseSchem?: TSchema): Promise<TResponse<TObject>>
+}
+type TRequester = {
+  [key:string]: IRequest;
+}
+
+const Requester: TRequester = {
+  get: async(url, param, withToken, parseSchem) => await RequestWrapper((url,param) => instance.get(url, { params: param }),url,param,withToken,parseSchem),
+  post: async (url, param, withToken, parseSchem) => await RequestWrapper(async(url,param) => await instance.post(url, param),url,param,withToken,parseSchem),
+  patch: async (url, param, withToken, parseSchem) => await RequestWrapper(async(url,param) => await instance.patch(url, param),url,param,withToken,parseSchem),
+  delete: async (url, param, withToken, parseSchem) => await RequestWrapper(async(url,_param) => await instance.delete(url),url,param,withToken,parseSchem),
 }
 
 export default Requester

@@ -10,7 +10,10 @@ type TResponse<T> = {
     redirect_to?:string
 }
 
+interface ICallBack<T> {
+    (...args: any[]):T
+}
 
-interface ICallback<T> {
-    (..._argrs:T[]):void | Promise<void>
+interface IAsyncCallBack<T> {
+    (...args: any[]): Promise<T>
 }

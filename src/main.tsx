@@ -1,7 +1,7 @@
-import App from './App';
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { Toaster } from "@pheralb/toast";
+import App from './App';
 
 
 

@@ -1,4 +1,5 @@
 export const API_LIST = {
-  GET_TEST: '/TEST',
- 
+   GET_USER:'/user',
+
 }
+

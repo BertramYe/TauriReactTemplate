@@ -1,0 +1,22 @@
+.createFrom {
+    width: 50vw;
+    gap: 2rem;
+    justify-content: center;
+    min-height: 35vh;
+}
+
+
+.submitBtn {
+    height: 2rem !important;
+    width: 3rem !important;
+}
+
+
+.submitBtnContainer {
+    flex-direction: row;
+    gap:  1rem;
+
+    .toSubmitBtn {
+        height: 2rem !important;
+    }
+}

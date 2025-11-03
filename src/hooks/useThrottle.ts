@@ -5,7 +5,7 @@ type TThrottleOptions = {
   triggerType:'leading' | 'tailing'
 }
 
-const useThrottle = <T,>(callback: ICallback<T>, delay: number = 1000,options?:TThrottleOptions) => {
+const useThrottle = <T,>(callback: ICallBack<T>, delay: number = 1000,options?:TThrottleOptions) => {
     const [lastTriggerTime,SetLastTriggerTime] = useState<number | null>(null)
     const ThrottleOptions = useMemo<TThrottleOptions>(()=> options ?? {triggerType:'leading'} ,[options])
     return (argrs:T[])=> {

@@ -1,0 +1,19 @@
+.startDialogBtn {
+    width: 5vw;
+}
+
+
+.chidrenContainer {
+    flex-direction: column;
+    min-width: 100%;
+    align-items: center;
+    background-color: rgb(56, 56, 56);
+    box-shadow: 0px 0px 0px 5px rgb(59, 59, 59);
+    border-radius: .2rem;
+    /* 使用 backdrop-filter 来模糊背景 */
+    backdrop-filter: blur(10px);
+    justify-content: space-around;
+    gap: 1rem;
+    padding: 1rem;
+}
+

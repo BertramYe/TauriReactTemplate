@@ -32,7 +32,7 @@ fn greet(name: Option<&str>) -> Response<Option<String>> {
     
     if let Some(nm) = name {
         if !nm.is_empty() {  // 使用 is_empty() 来判断字符串是否为空
-            resp.message = format!("hello {nm}, welcome to the template that built by Bertram !");
+            resp.message = format!("hello {nm}, welcome to the TauriReactTemplate that built by Bertram !");
             resp.ok = true;
         } else {
             resp.message = "your name can't be empty!".to_string();

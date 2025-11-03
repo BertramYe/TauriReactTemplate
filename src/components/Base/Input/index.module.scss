@@ -1,0 +1,44 @@
+
+
+// .input[type="checkbox"] {
+//     appearance: none;
+//     -webkit-appearance: none;
+//     width: 18px;
+//     height: 18px;
+//     border: 2px solid #888;
+//     border-radius: 4px;
+//     cursor: pointer;
+//     display: inline-block;
+//     vertical-align: middle;
+//     position: relative;
+//     transition: all 0.2s ease;
+//     background-color: #575757; /* ✅ 未选中时的背景色 */
+// }
+
+// .input[type="checkbox"]:checked {
+//   background-color: #4f46e5; /* 选中填充色 */
+//   border-color: #4f46e5;
+// }
+
+
+
+
+.input {
+    outline: none;
+    border: none;
+    padding: 0rem  0.5rem ;
+    min-height: 2rem;
+    border-radius: .5rem;
+    box-shadow: 0px 0px 0px 5px rgb(110, 110, 110);
+    background-color: rgb(97, 97, 97);
+    text-align: center;
+    color: rgb(218, 218, 218);
+}
+
+.input:focus {
+    background-color:rgb(100, 100, 100);
+}
+
+.input::placeholder {
+    color: rgb(146, 146, 146);
+}

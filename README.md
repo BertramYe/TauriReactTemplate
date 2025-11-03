@@ -37,6 +37,9 @@ and in default we can build and package current project with the commend here be
 # just only default, it will help build all kind of the versions (not recomend)
 $ npm run tauri build
 
+# if you want to debug the built project, can use the commend here below
+$ npm run tauri build -- --debug
+
 ```
 
 so it's better we can help built it according to our need for diffrent plamtform

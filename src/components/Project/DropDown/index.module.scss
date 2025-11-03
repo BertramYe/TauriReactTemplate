@@ -1,0 +1,76 @@
+
+
+
+
+.container {
+    position: relative; 
+}
+
+
+.inputContainer {
+    position: relative;
+
+    .input {
+        padding-right: 1.25rem;
+    }
+
+    .dropIcon {
+        position: absolute;
+        width: 1rem;
+        height: 1rem;
+        // background-color: green;
+        text-align: center;
+        line-height: 1rem;
+        right: 0.15rem;
+        font-size: 1rem;
+        font-weight: 700;
+    }
+    
+}
+
+.optionsContainer {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    transform: translateY(100%);
+    bottom: 0;
+    border-radius: .5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+    visibility: hidden;
+    background-color: rgb(71, 71, 71);
+    height: 15vh;
+    overflow: hidden;
+    justify-content: flex-start;
+    overflow-y: scroll;
+    z-index: 1;
+}
+
+
+.container:has(.input:focus) {
+
+    .dropIcon {
+         transform: rotateZ(-90deg);
+    }
+
+    .optionsContainer {
+        visibility: inherit;
+    }
+}
+
+
+.optionsContainer:hover {
+   visibility: inherit;
+}
+
+
+.option {
+    height: 2rem;
+    line-height: 2rem;
+    border-radius: .5rem;
+}
+
+.option:hover {
+   background-color: #767676;
+}

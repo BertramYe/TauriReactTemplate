@@ -1,0 +1,21 @@
+.button {
+    width: 100%;
+    height: 100%;
+    border-radius: .3rem;
+    min-height: 2rem;
+    box-shadow: 0px 0px 0px 10px rgb(83, 83, 83);
+    text-align: center;
+    color: rgb(110, 110, 110);
+    min-width: fit-content;
+    padding: .1rem 1rem;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: rgb(87, 87, 87);
+    // color: rgb(73, 73, 73);
+}
+
+.image {
+    max-height: 90%;
+}

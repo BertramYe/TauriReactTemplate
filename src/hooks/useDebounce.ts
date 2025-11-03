@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useDebounce =  <T,>(callback:ICallback<T>,delay:number= 1000) => {
+const useDebounce =  <T,>(callback:ICallBack<T>,delay:number= 1000) => {
     const [timeOutId,setTimeOutID] = useState<NodeJS.Timeout>()
     return (...argrs:T[]) => {
         clearTimeout(timeOutId);
